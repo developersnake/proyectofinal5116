@@ -31,9 +31,6 @@ public class RolServiceImpl implements RolService {
 
     @Override
     public RolDTO crearRol(RolDTO dto) throws CoreException {
-        if(dto.getId() != null){
-            throw new CoreException("No debe enviar el id del rol para crearlo.", "Valida el error");
-        }
         var rol = rolMapper.toEntity(dto);
         rol = rolRepository.save(rol);
         return rolMapper.toDTO(rol);
@@ -41,9 +38,6 @@ public class RolServiceImpl implements RolService {
 
     @Override
     public RolDTO actualizarRol(RolDTO dto) throws CoreException {
-        if(dto.getId() == null){
-            throw new CoreException("Es necesario el id del rol para actualizarlo.", "Valida este error");
-        }
         return crearRol(dto);
     }
 }
