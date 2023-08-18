@@ -2,7 +2,7 @@ package com.exacom.proyectofinal.controller.rol;
 
 import com.exacom.proyectofinal.domains.RolDTO;
 import com.exacom.proyectofinal.exception.CoreException;
-import com.exacom.proyectofinal.validation.RolValidation;
+import com.exacom.proyectofinal.validation.CoreValidation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +23,8 @@ public interface RolController {
     RolDTO obtenerRolPorId(@PathVariable("id") Integer id);
 
     @PostMapping("/crearRol")
-    RolDTO crearRol(@Validated({RolValidation.Create.class}) @RequestBody RolDTO dto) throws CoreException;
+    RolDTO crearRol(@Validated({CoreValidation.Create.class}) @RequestBody RolDTO dto) throws CoreException;
 
     @PutMapping("/actualizarRol")
-    RolDTO actualizarRol(@Validated(RolValidation.Update.class) @RequestBody RolDTO dto) throws CoreException;
+    RolDTO actualizarRol(@Validated(CoreValidation.Update.class) @RequestBody RolDTO dto) throws CoreException;
 }

@@ -1,6 +1,6 @@
 package com.exacom.proyectofinal.validation;
 
-public interface RolValidation {
+public interface CoreValidation {
     interface Create {
     }
 

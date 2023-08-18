@@ -1,6 +1,8 @@
 package com.exacom.proyectofinal.controller.persona;
 
 import com.exacom.proyectofinal.domains.PersonaDTO;
+import com.exacom.proyectofinal.validation.CoreValidation;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +26,8 @@ public interface PersonaController {
     String eliminarPersonaPorId(@PathVariable("id") Integer id);
 
     @PostMapping("/crearPersona")
-    PersonaDTO crearPersona(@RequestBody PersonaDTO dto);
+    PersonaDTO crearPersona(@Validated(CoreValidation.Create.class) @RequestBody PersonaDTO dto);
 
     @PutMapping("/actualizarPersona")
-    PersonaDTO actualizarPersona(@RequestBody PersonaDTO dto);
+    PersonaDTO actualizarPersona(@Validated(CoreValidation.Update.class) @RequestBody PersonaDTO dto);
 }
