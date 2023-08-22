@@ -1,5 +1,6 @@
 package com.exacom.proyectofinal.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +28,7 @@ public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "nombre", unique = true, length = 32, nullable = false)
     private String nombre;
     @ManyToMany(mappedBy = "roles")
     private List<Persona> personas;
