@@ -29,13 +29,12 @@ public class LibroMapper {
     }
 
     private AutorDTO toAutorDto(Autor entity) {
-        List<LibroDTO> libros = new ArrayList<>();
-        if (entity.getLibros() != null) {
-            libros = entity.getLibros().stream().map(this::toDto).toList();
+        if(entity == null) {
+            return null;
         }
         var pais = paisMapper.toDto(entity.getPais());
         return AutorDTO.builder().id(entity.getId()).nombres(entity.getNombres()).edad(entity.getEdad())
-                .pais(pais).libros(libros).build();
+                .pais(pais).build();
     }
 
     private Autor toAutor(AutorDTO dto) {

@@ -38,4 +38,22 @@ public class LibroServiceImpl implements LibroService {
     public LibroDTO modificarLibro(LibroDTO dto) {
         return crearLibro(dto);
     }
+
+    @Override
+    public List<LibroDTO> buscarPorNombre(String nombre) {
+        var lista = libroRepository.findByNombre(nombre);
+        return lista.stream().map(libroMapper::toDto).toList();
+    }
+
+    @Override
+    public List<LibroDTO> buscarCoincidenciasPorNombre(String nombre) {
+        var lista = libroRepository.findByNombreContaining(nombre);
+        return lista.stream().map(libroMapper::toDto).toList();
+    }
+
+    @Override
+    public List<LibroDTO> buscarCoincidenciasPorNombreIgnorandoMayusculas(String nombre) {
+        var lista = libroRepository.findByNombreContainingIgnoreCase(nombre);
+        return lista.stream().map(libroMapper::toDto).toList();
+    }
 }

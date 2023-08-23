@@ -10,4 +10,9 @@ public interface LibroService {
     LibroDTO obtenerLibroPorId(Integer id);
     LibroDTO crearLibro(LibroDTO dto);
     LibroDTO modificarLibro(LibroDTO dto);
+
+    List<LibroDTO> buscarPorNombre(String nombre);
+
+    List<LibroDTO> buscarCoincidenciasPorNombre(String nombre);
+    List<LibroDTO> buscarCoincidenciasPorNombreIgnorandoMayusculas(String nombre);
 }

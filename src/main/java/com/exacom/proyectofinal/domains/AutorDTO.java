@@ -19,10 +19,10 @@ public class AutorDTO {
     private Integer id;
     @NotBlank(message = "{NotBlank}", groups = {CoreValidation.Create.class, CoreValidation.Update.class})
     private String nombres;
-    @Null(message = "{Null}", groups = {CoreValidation.Create.class, CoreValidation.Update.class})
+    @NotNull(message = "{NotNull}", groups = {CoreValidation.Create.class, CoreValidation.Update.class})
     private Integer edad;
     private PaisDTO pais;
     List<LibroDTO> libros;
-    @Null(message = "{Null}", groups = {CoreValidation.Create.class, CoreValidation.Update.class})
+    @NotNull(message = "{NotNull}", groups = {CoreValidation.Create.class, CoreValidation.Update.class})
     private Boolean isActivo;
 }
