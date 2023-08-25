@@ -56,4 +56,10 @@ public class LibroServiceImpl implements LibroService {
         var lista = libroRepository.findByNombreContainingIgnoreCase(nombre);
         return lista.stream().map(libroMapper::toDto).toList();
     }
+
+    @Override
+    public List<LibroDTO> buscarCoincidenciasPorNombreNativa(String nombre) {
+        var lista = libroRepository.findByNombreLikeNativa(nombre);
+        return lista.stream().map(libroMapper::toDto).toList();
+    }
 }

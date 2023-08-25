@@ -12,7 +12,10 @@ public interface LibroRepository extends JpaRepository<Libro, Integer> {
 
     List<Libro> findByNombreContaining(String nombre);
 
-    @Query("FROM Libro l WHERE l.nombre LIKE '%:nombre%'")
+    @Query("FROM Libro l WHERE LOWER(l.nombre) LIKE LOWER(CONCAT('%', :nombre, '%'))")
     List<Libro> findByNombreContainingIgnoreCase(String nombre);
+
+    @Query(value = "SELECT * FROM LIBROS WHERE LOWER(nombre) LIKE LOWER(CONCAT('%', :nombre, '%'))", nativeQuery = true)
+    List<Libro> findByNombreLikeNativa(String nombre);
 
 }

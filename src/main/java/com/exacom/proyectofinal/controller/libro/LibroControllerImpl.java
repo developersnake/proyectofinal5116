@@ -47,4 +47,9 @@ public class LibroControllerImpl implements LibroController {
     public List<LibroDTO> buscarCoincidenciasPorNombreIgnorandoMayusculas(String nombre) {
         return libroService.buscarCoincidenciasPorNombreIgnorandoMayusculas(nombre);
     }
+
+    @Override
+    public List<LibroDTO> buscarCoincidenciasNativa(String nombre) {
+        return libroService.buscarCoincidenciasPorNombreNativa(nombre);
+    }
 }

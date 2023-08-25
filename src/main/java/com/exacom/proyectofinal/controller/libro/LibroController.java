@@ -32,4 +32,7 @@ public interface LibroController {
 
     @GetMapping("/buscarCoincidenciasPorNombreIgnorandoMayusculas")
     List<LibroDTO> buscarCoincidenciasPorNombreIgnorandoMayusculas(@RequestParam("nombre") String nombre);
+
+    @GetMapping("/buscarCoincidenciasNativa")
+    List<LibroDTO> buscarCoincidenciasNativa(@RequestParam("nombre") String nombre);
 }

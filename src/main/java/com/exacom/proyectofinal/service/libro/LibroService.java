@@ -15,4 +15,5 @@ public interface LibroService {
 
     List<LibroDTO> buscarCoincidenciasPorNombre(String nombre);
     List<LibroDTO> buscarCoincidenciasPorNombreIgnorandoMayusculas(String nombre);
+    List<LibroDTO> buscarCoincidenciasPorNombreNativa(String nombre);
 }
