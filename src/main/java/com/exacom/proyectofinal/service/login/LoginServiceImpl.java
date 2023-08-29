@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,15 +25,17 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public JwtToken login(LoginDto dto) {
-        var login = loginRepository.findByUserName(dto.getUserName()).orElse(Login.builder().build());
-        dto = loginMapper.toDto(login);
+        var login = loginRepository.findByUserName(dto.getUserName())
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado."));
+        dto.setRole(login.getRole());
+        dto.setId(login.getId());
         var token = JwtToken.builder().build();
         var userAuth = new UsernamePasswordAuthenticationToken(dto.getUserName(), dto.getUserPassword());
         var auth = authenticationManager.authenticate(userAuth);
         if (auth.isAuthenticated()) {
             token.setAccessToken(jwtService.generateToken(dto));
         }
-        return null;
+        return token;
     }
 
     @Override

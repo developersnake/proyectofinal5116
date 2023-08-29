@@ -23,6 +23,7 @@ public class JwtServiceImpl implements JwtService {
         var payload = new HashMap<String, Object>();
         payload.put("role", dto.getRole());
         payload.put("uid", dto.getId());
+
         return this.createToken(payload, dto.getUserName());
     }
 
@@ -49,7 +50,7 @@ public class JwtServiceImpl implements JwtService {
     }
 
     private String createToken(Map<String, Object> payload, String subject) {
-        return Jwts.builder().setSubject(subject).setClaims(payload)
+        return Jwts.builder().setClaims(payload).setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 100 * 60 * 60 * 10))
                 .signWith(SignatureAlgorithm.HS256, JWT_SECRET).compact();
